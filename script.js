@@ -63,7 +63,6 @@ const btnLogin = document.querySelector('.login__btn');
 const btnTransfer = document.querySelector('.form__btn--transfer');
 const btnLoan = document.querySelector('.form__btn--loan');
 const btnClose = document.querySelector('.form__btn--close');
-const btnSort = document.querySelector('.btn--sort');
 
 const inputLoginUsername = document.querySelector('.login__input--user');
 const inputLoginPin = document.querySelector('.login__input--pin');
@@ -98,12 +97,12 @@ const formatCur = function (value, locale, currency) {
   }).format(value);
 };
 
-const displayMovements = function (acc, sort = false) {
+const displayMovements = function (acc) {
   // Empty document.querySelector('.movements');
   containerMovements.innerHTML = '';
 
   // We create a new arr to not mutate the original
-  const movs = sort ? acc.slice().sort((a, b) => a - b) : acc.movements;
+  const movs = acc.movements;
 
   movs.forEach(function (mov, i) {
     // Return operation type: deposit or withdrawal
@@ -351,14 +350,6 @@ btnClose.addEventListener('click', function (e) {
   inputCloseUsername.value = inputClosePin.value = '';
 });
 
-let sorted = false;
-// Sort the values
-btnSort.addEventListener('click', function (e) {
-  e.preventDefault();
-  // The opposite of false in this case
-  displayMovements(currentAccount.movements, !sorted);
-  sorted = !sorted;
-});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
